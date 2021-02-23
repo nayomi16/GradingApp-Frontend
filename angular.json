@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "GradingApp": {
@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "GradingApp"
+    }
+  },
+  "defaultProject": "GradingApp",
+  "cli": {
+    "analytics": "b86693a4-b3ec-4fd1-954d-bd793d574518"
+  }
 }
