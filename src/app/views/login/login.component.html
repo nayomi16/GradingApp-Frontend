@@ -4,15 +4,16 @@
     <li class="list-group-item bg-white" id="lnkOrders">SignIn Page</li>
   </ul>
 </header>
-<section class="container">
+
+<section class="container-fluid">
   <div class="row justify-content-center">
     <div class="col-5 shadow-lg pt-5 pb-5 mt-3">
       <form [formGroup]="form">
-        <div class="form-group  pr-2 pl-2">
+        <div class="form-group text-white p-3 pr-2 pl-2">
           <label for="userName">UserId</label>
           <input class="form-control" formControlName="username" id="userName" name="username" type="text">
         </div>
-        <div class="form-group  pr-2 pl-2">
+        <div class="form-group text-white p-3 pr-2 pl-2">
           <label for="userName">Password</label>
           <input class="form-control" formControlName="password" id="passWord" name="password" type="password">
         </div>
