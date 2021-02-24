@@ -1,1 +1,75 @@
+<div class="jumbotron p-3 ">
+  <h1>{{name}} - Class {{class}}</h1>
 
+</div>
+<div *ngIf="mainView">
+  <h3>Attempt Assignments</h3>
+</div>
+
+
+
+<div class="container-fluid" *ngIf="mainView" >
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered table-hover">
+        <tbody>
+
+        <tr  *ngFor="let assignmentId of attemptAssignments;">
+          <td><button (click)="results(assignmentId)" class="btn btn-secondary">{{assignmentId}}</button></td>
+          <td><button (click)="review(assignmentId)" class="btn btn-primary">reviewAnswer</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" *ngIf="resultView" >
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered bg-info table-hover">
+        <thead class="font-weight-bolder">
+        <tr>
+          <th>Question Number</th>
+          <th>Result</th>
+          <th>Time Spent</th>
+          <th>No of Attempt</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="text-white p-3 font-weight-bolder" *ngFor="let result of questionsResults;">
+          <td>{{result.qId}}</td>
+          <td>{{result.resultStatus}}</td>
+          <td>{{result.timeSpent}}</td>
+          <td>{{result.noOfAttempt}}</td>
+        </tr>
+        </tbody>
+      </table>
+      <button (click)="back()" class="btn btn-primary">Back</button>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" *ngIf="reviewView" >
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered bg-info table-hover">
+        <thead class="font-weight-bolder">
+        <tr>
+          <th>Review Questions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="text-white p-3 font-weight-bolder" *ngFor="let review of questionsReviews;">
+          <td><p>{{review.qId}} : {{review.question}}<br>
+            {{review.studentAnswer}} your answer is {{review.resultStatus}}</p>
+            <p *ngIf="review.resultStatus=='right'">&#10004;</p>
+            <p *ngIf="review.resultStatus=='wrong'">&#10006;</p>
+            <p class="text-danger">correct answer : {{review.correctAnswer}}</p></td>
+        </tr>
+        </tbody>
+      </table>
+      <button (click)="back()" class="btn btn-primary">Back</button>
+    </div>
+  </div>
+</div>

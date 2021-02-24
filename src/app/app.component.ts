@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {TOKEN_KEY} from './constants/constants';
 import {EventEmitterService} from './services/event-emitter.service';
-import {Subscription} from "rxjs";
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +10,13 @@ import {Subscription} from "rxjs";
 })
 export class AppComponent {
   title = 'GradingApp';
-  isLogged = false
+  isLogged = false;
 
   clickEventSubscription: Subscription;
   constructor(private eventEmiterService: EventEmitterService) {
-    this.clickEventSubscription=this.eventEmiterService.getClickEvent().subscribe(()=>{
+    this.clickEventSubscription = this.eventEmiterService.getClickEvent().subscribe(() => {
       this.ngOnInit();
-    })
+    });
   }
 
   ngOnInit(): void {

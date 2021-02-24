@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
-import {ResponseDto} from "../dto/response-dto";
-import {HttpClient} from "@angular/common/http";
+import {Observable} from 'rxjs';
+import {ResponseDto} from '../dto/response-dto';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,16 @@ export class StudentService {
   getStudent(userId): Observable<ResponseDto> {
     return this.http.get<ResponseDto>(this.URL + userId);
   }
+
+  getDetailResults(assId, userId): Observable<ResponseDto> {
+    return this.http.get<ResponseDto>(this.URL + 'assignment' + '/' + assId + '/' + userId);
+  }
+
+  reviewAnswer(assId, userId): Observable<ResponseDto> {
+    return this.http.get<ResponseDto>(this.URL + 'assignment/review' + '/' + assId + '/' + userId);
+  }
+
+
 
 
 }
