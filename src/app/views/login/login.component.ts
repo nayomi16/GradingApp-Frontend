@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {UserAuthService} from '../../services/user-auth.service';
 import {ROLE, TOKEN_KEY, USER_DTO} from '../../constants/constants';
+import {EventEmitterService} from '../../services/event-emitter.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required])
   });
 
-  constructor(private router: Router, private userAuthServise: UserAuthService,) { }
+  constructor(private router: Router, private userAuthServise: UserAuthService, private eventEmitter: EventEmitterService) { }
 
   ngOnInit(): void {
   }
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
           window.localStorage.setItem( USER_DTO, JSON.stringify( response.data ) );
           window.localStorage.setItem( ROLE, response.data.role );
 
-
+          this.eventEmitter.sendClickEvent();
           if (response.data.role === 'student') {
             this.router.navigate( ['/student'], {
               queryParams: {userId: this.userId.value}

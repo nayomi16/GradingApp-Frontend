@@ -10,7 +10,7 @@ import {ResponseDto} from '../dto/response-dto';
 export class UserAuthService {
   private URL = 'http://localhost:5000/user';
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient) { }
 
   signInUser(user): Observable<ResponseDto> {
     return this.http.post<ResponseDto>(this.URL + '/login', user);

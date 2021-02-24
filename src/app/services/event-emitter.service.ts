@@ -1,16 +1,19 @@
 import {EventEmitter, Injectable} from '@angular/core';
+import {Observable, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventEmitterService {
 
-  constructor() { }
+  private subject = new Subject<any>();
 
-  invokeFirstComponent = new EventEmitter();
-
-
-  onFirstComponentButtonClick() {
-    this.invokeFirstComponent.emit();
+  sendClickEvent() {
+    this.subject.next();
   }
+  getClickEvent(): Observable<any>{
+    return this.subject.asObservable();
+  }
+
+
 }
