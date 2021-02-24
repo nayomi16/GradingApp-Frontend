@@ -12,14 +12,14 @@ export class TeacherComponent implements OnInit {
    name: string;
    class;
    assId;
-   gradeDetail=[];
+   gradeDetail = [];
    sId;
    averageTime;
    correctPercent;
    questionView = false;
    mainView = true;
    staticView = false;
-   all=false;
+   all = false;
    teacherAssignDetails = [];
    assgnDetail = [];
    qIds = [];
@@ -68,14 +68,25 @@ export class TeacherComponent implements OnInit {
     });
   }
   averallGrads(assId: any) {
-    this.mainView=false;
-    this.all=true;
-    this.teacherService.getOverallGrade(this.teachId,assId).subscribe((response)=>{
-        console.log(response.data)
-        this.gradeDetail=response.data;
-    })
+    this.mainView = false;
+    this.all = true;
+    this.teacherService.getOverallGrade(this.teachId, assId).subscribe((response) => {
+        console.log(response.data);
+        this.gradeDetail = response.data;
+    });
 
   }
-  
+  backAll() {
+    this.mainView = true;
+    this.all = false;
+  }
+  backStatic() {
+    this.staticView = false;
+    this.questionView = true;
+  }
+  backQuestion() {
+    this.mainView = true;
+    this.questionView = false;
+  }
 
 }
