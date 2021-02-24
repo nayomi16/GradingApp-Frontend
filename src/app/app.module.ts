@@ -7,6 +7,8 @@ import { StudentComponent } from './views/student/student.component';
 import { TeacherComponent } from './views/teacher/teacher.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
+import {HttpClientModule} from '@angular/common/http';
+import {EventEmitterService} from "./services/event-emitter.service";
 
 @NgModule({
   declarations: [
@@ -19,9 +21,10 @@ import {AppRoutingModule} from './app-routing.module';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [EventEmitterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

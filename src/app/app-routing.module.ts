@@ -15,6 +15,11 @@ const routes: Routes = [
 
   {
     path : 'teacher', component : TeacherComponent
+  },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'login'
   }
 
 ];

@@ -1,21 +1,23 @@
-<header class="jumbotron bg-primary text-white p-3">
-  <h1 class="position-absolute" id="nav">GRADING SYSTEM</h1>
-  <ul class="list-group list-group-horizontal text-danger justify-content-end font-weight-bold">
-    <li class="list-group-item bg-white" id="lnkOrders">SignIn Page</li>
-  </ul>
-</header>
 
-<section class="container-fluid">
+<section class="container">
   <div class="row justify-content-center">
-    <div class="col-5 shadow-lg pt-5 pb-5 mt-3">
+    <div class="col-5  shadow-lg pt-5 pb-5 mt-3">
       <form [formGroup]="form">
-        <div class="form-group text-white p-3 pr-2 pl-2">
+        <div class="form-group  p-3 pr-2 pl-2">
           <label for="userName">UserId</label>
-          <input class="form-control" formControlName="username" id="userName" name="username" type="text">
+          <input class="form-control" formControlName="userId" id="userName" name="username" type="text">
+          <div class="alert bg-danger text-white" *ngIf="!userId.valid && userId.touched">
+            <div *ngIf="userId.errors.required">required to fill</div>
+            <div *ngIf="userId.errors.minlength">minimum length is 4</div>
+          </div>
         </div>
-        <div class="form-group text-white p-3 pr-2 pl-2">
-          <label for="userName">Password</label>
+        <div class="form-group  p-3 pr-2 pl-2">
+          <label for="passWord">Password</label>
           <input class="form-control" formControlName="password" id="passWord" name="password" type="password">
+          <div class="alert bg-danger text-white" *ngIf="!passWord.valid && passWord.touched">
+            <div *ngIf="passWord.errors.required">required to fill</div>
+            <div *ngIf="passWord.errors.minlength">minimum length is 6</div>
+          </div>
         </div>
         <div class="btn-group pl-2">
           <button (click)="login()" class="btn btn-primary">Login</button>
