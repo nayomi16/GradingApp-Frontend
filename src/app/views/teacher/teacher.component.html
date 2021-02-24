@@ -1,1 +1,88 @@
-<p>teacher works!</p>
+<div class="jumbotron p-3 ">
+  <h1>{{name}} - Class {{class}}</h1>
+
+</div>
+<div *ngIf="mainView">
+  <h3>Given Assignments</h3>
+</div>
+
+
+
+<div class="container-fluid" *ngIf="mainView" >
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered table-hover">
+        <tbody>
+        <tr *ngFor="let assgnDetail of teacherAssignDetails">
+          <td><button (click)="showQuestions(assgnDetail.quesIds,assgnDetail.assId)" class="btn btn-secondary">{{assgnDetail.assId}}</button></td>
+          <button (click)="averallGrads(assgnDetail.assId)" class="btn btn-primary">{{assgnDetail.assId}} Overall Grade Details</button>
+
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" *ngIf="questionView" >
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered bg-info table-hover">
+        <tbody>
+        <tr *ngFor="let qId of qIds">
+          <td><button  (click)="showStatics(qId)" class="btn btn-secondary">Statics On {{qId}}</button></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" *ngIf="staticView" >
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered bg-info table-hover">
+        <thead>
+        <tr>
+          <th>Question</th>
+          <th>Average Time Spent</th>
+          <th>corect Percentage</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr >
+          <td>{{qId}}</td>
+          <td>{{averageTime}}</td>
+          <td>{{correctPercent}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid" *ngIf="all" >
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered bg-info table-hover">
+        <thead>
+        <tr>
+          <th>Student Id</th>
+          <th>Marks</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let grade of gradeDetail">
+          <td>{{grade.sId}}</td>
+          <td>{{grade.marks}}%</td>
+
+        </tr>
+        </tbody>
+      </table>
+      <button (click)="backAll()" class="btn btn-primary">Back</button>
+    </div>
+  </div>
+</div>
+
+
