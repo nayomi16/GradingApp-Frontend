@@ -55,12 +55,12 @@ export class TeacherComponent implements OnInit {
 
   }
 
-  showStatics(qId: any) {
+  showStatics(qDetail: any) {
     this.mainView = false;
     this.questionView = false;
     this.staticView = true;
 
-    this.teacherService.getStatisticsOnQuestion(this.teachId, this.assId, qId).subscribe((response) => {
+    this.teacherService.getStatisticsOnQuestion(this.teachId, this.assId, qDetail.qId).subscribe((response) => {
       this.qId = response.data.qId;
       this.averageTime = response.data.averageTimeSpent;
       this.correctPercent = response.data.corectPercentage;

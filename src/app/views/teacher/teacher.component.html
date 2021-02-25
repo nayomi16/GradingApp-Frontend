@@ -1,8 +1,8 @@
-<div class="jumbotron p-3 ">
+<div class=" text-right jumbotron p-3 ">
   <h1>{{name}} - Class {{class}}</h1>
 
 </div>
-<div *ngIf="mainView">
+<div class="text-center" *ngIf="mainView">
   <h3>Given Assignments</h3>
 </div>
 
@@ -11,12 +11,14 @@
 <div class="container-fluid" *ngIf="mainView" >
   <div class="row">
     <div class="col-12">
-      <table class="table table-bordered table-hover">
+      <table class=" text-center table table-bordered table-hover">
         <tbody>
         <tr *ngFor="let assgnDetail of teacherAssignDetails">
-          <td><button (click)="showQuestions(assgnDetail.quesIds,assgnDetail.assId)" class="btn btn-secondary">{{assgnDetail.assId}}</button></td>
-          <button (click)="averallGrads(assgnDetail.assId)" class="btn btn-primary">{{assgnDetail.assId}} Overall Grade Details</button>
-
+          <td>
+            <p class="p-3 font-weight-bold">{{assgnDetail.assId}}</p>
+            <button (click)="showQuestions(assgnDetail.quesIds,assgnDetail.assId)" class="btn ">Statistics on Questions {{assgnDetail.assId}}</button>
+            <br><br><button (click)="averallGrads(assgnDetail.assId)" class="btn btn-primary">{{assgnDetail.assId}} Overall Grade Details</button>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -27,10 +29,12 @@
 <div class="container-fluid" *ngIf="questionView" >
   <div class="row">
     <div class="col-12">
-      <table class="table table-bordered bg-info table-hover">
+      <h3>{{assId}}</h3>
+      <table class="table table-bordered  table-hover">
         <tbody>
-        <tr *ngFor="let qId of qIds">
-          <td><button  (click)="showStatics(qId)" class="btn btn-secondary">Statics On {{qId}}</button></td>
+        <tr *ngFor="let qDetail of qIds">
+          <td><button  (click)="showStatics(qDetail)" class="btn btn-light">Statistics On {{qDetail.qId}}</button>
+            <br><br><p class="font-weight-bold">{{qDetail.ques}}</p></td>
         </tr>
         </tbody>
       </table>
@@ -41,13 +45,14 @@
 
 <div class="container-fluid" *ngIf="staticView" >
   <div class="row">
+    <h3>Statistics on {{qId}}</h3>
     <div class="col-12">
-      <table class="table table-bordered bg-info table-hover">
+      <table class="table table-bordered  table-hover">
         <thead>
         <tr>
           <th>Question</th>
           <th>Average Time Spent</th>
-          <th>corect Percentage</th>
+          <th>corect Percentage(%)</th>
         </tr>
         </thead>
         <tbody>
@@ -66,11 +71,12 @@
 <div class="container-fluid" *ngIf="all" >
   <div class="row">
     <div class="col-12">
-      <table class="table table-bordered bg-info table-hover">
+      <table class="table table-bordered  table-hover">
         <thead>
         <tr>
           <th>Student Id</th>
           <th>Marks</th>
+          <th>No of attempts</th>
 
         </tr>
         </thead>
@@ -78,6 +84,7 @@
         <tr *ngFor="let grade of gradeDetail">
           <td>{{grade.sId}}</td>
           <td>{{grade.marks}}%</td>
+          <td>{{grade.noOfAttempts}}</td>
 
         </tr>
         </tbody>
