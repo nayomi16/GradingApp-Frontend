@@ -1,8 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
-/*body{*/
-  /*background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, .5)),url(~src/app/images/images.png) ;*/
-  /*background-size: cover;*/
-  /*background-attachment: fixed;*/
-/*}*/
+body{
+  background-color: bisque; 
+
+}

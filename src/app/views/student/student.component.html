@@ -1,8 +1,8 @@
-<div class="jumbotron p-3 ">
-  <h1>{{name}} - Class {{class}}</h1>
+<div class=" text-right p-1 ">
+  <h2>{{name}} - Class {{class}}</h2>
 
-</div>
-<div *ngIf="mainView">
+</div><br><br>
+<div class="text-center" *ngIf="mainView">
   <h3>Attempt Assignments</h3>
 </div>
 
@@ -14,9 +14,10 @@
       <table class="table table-bordered table-hover">
         <tbody>
 
-        <tr  *ngFor="let assignmentId of attemptAssignments;">
-          <td><button (click)="results(assignmentId)" class="btn btn-secondary">{{assignmentId}}</button></td>
-          <td><button (click)="review(assignmentId)" class="btn btn-primary">reviewAnswer</button></td>
+        <tr class="text-center" *ngFor="let assignmentId of attemptAssignments;">
+          <td><button (click)="results(assignmentId)" class="btn">View result of {{assignmentId}}</button>
+            <br>
+          <button (click)="review(assignmentId)" class="btn btn-primary">reviewAnswer</button></td>
         </tr>
         </tbody>
       </table>
@@ -27,25 +28,27 @@
 <div class="container-fluid" *ngIf="resultView" >
   <div class="row">
     <div class="col-12">
-      <table class="table table-bordered bg-info table-hover">
+      <button (click)="back()" class=" btn btn-primary">BackToProfile</button>
+      <table class="table table-bordered text-center table-hover">
         <thead class="font-weight-bolder">
         <tr>
           <th>Question Number</th>
-          <th>Result</th>
           <th>Time Spent</th>
           <th>No of Attempt</th>
         </tr>
         </thead>
         <tbody>
-        <tr class="text-white p-3 font-weight-bolder" *ngFor="let result of questionsResults;">
-          <td>{{result.qId}}</td>
-          <td>{{result.resultStatus}}</td>
+        <tr class=" p-3 font-weight-bolder" *ngFor="let result of questionsResults;">
+          <td>{{result.qId}} <p *ngIf="result.resultStatus=='right'">&#10004;</p>
+            <p *ngIf="result.resultStatus=='wrong'">&#10006;</p>
+            <p *ngIf="result.resultStatus=='partial'">&#10004; Partial Answer</p>
+          </td>
           <td>{{result.timeSpent}}</td>
           <td>{{result.noOfAttempt}}</td>
         </tr>
         </tbody>
       </table>
-      <button (click)="back()" class="btn btn-primary">Back</button>
+      <button (click)="back()" class=" btn btn-primary">Back</button>
     </div>
   </div>
 </div>
@@ -53,18 +56,20 @@
 <div class="container-fluid" *ngIf="reviewView" >
   <div class="row">
     <div class="col-12">
-      <table class="table table-bordered bg-info table-hover">
+      <button (click)="back()" class="btn btn-primary">BackToProfile</button>
+      <table class="table table-bordered  table-hover">
         <thead class="font-weight-bolder">
         <tr>
           <th>Review Questions</th>
         </tr>
         </thead>
         <tbody>
-        <tr class="text-white p-3 font-weight-bolder" *ngFor="let review of questionsReviews;">
+        <tr class="p-3 font-weight-bolder" *ngFor="let review of questionsReviews;">
           <td><p>{{review.qId}} : {{review.question}}<br>
             {{review.studentAnswer}} your answer is {{review.resultStatus}}</p>
             <p *ngIf="review.resultStatus=='right'">&#10004;</p>
             <p *ngIf="review.resultStatus=='wrong'">&#10006;</p>
+            <p *ngIf="review.resultStatus=='partial'">&#10004; Partial Answer</p>
             <p class="text-danger">correct answer : {{review.correctAnswer}}</p></td>
         </tr>
         </tbody>

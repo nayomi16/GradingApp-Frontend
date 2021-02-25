@@ -40,6 +40,7 @@ export class StudentComponent implements OnInit {
     this.mainView = false;
     this.resultView = true;
     this.reviewView = false;
+    this.questionsResults=[];
     this.studentService.getDetailResults(assId, this.userId).subscribe((response) => {
       console.log('data=', response.data);
       response.data.forEach(result => {
