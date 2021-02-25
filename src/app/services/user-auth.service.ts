@@ -25,6 +25,8 @@ export class UserAuthService {
   //   this.router.navigate(['/login']);
   // }
 
-  loggedIn() {
-    return !!window.localStorage.getItem(TOKEN_KEY);  }
+  public get loggedIn(): boolean {
+    return (localStorage.getItem(TOKEN_KEY) !== null);
+  }
+
 }
