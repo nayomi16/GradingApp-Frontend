@@ -7,8 +7,10 @@ import { StudentComponent } from './views/student/student.component';
 import { TeacherComponent } from './views/teacher/teacher.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {EventEmitterService} from "./services/event-emitter.service";
+import {TokenInterceptorService} from "./services/token-interceptor.service";
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,15 @@ import {EventEmitterService} from "./services/event-emitter.service";
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [EventEmitterService],
+  providers: [
+    EventEmitterService,
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
