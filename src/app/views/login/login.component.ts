@@ -11,7 +11,8 @@ import {EventEmitterService} from '../../services/event-emitter.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  errorMsg;
+  isLogged = true;
   form = new FormGroup({
     userId: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
@@ -34,6 +35,7 @@ export class LoginComponent implements OnInit {
     if (this.form.valid ) {
       this.userAuthServise.signInUser(this.form.value).subscribe((response) => {
         if (response.code === 200 && response.data != null) {
+          this.isLogged = true;
           console.log(response.data);
           window.localStorage.setItem( TOKEN_KEY, response.data.token );
           window.localStorage.setItem( USER_DTO, JSON.stringify( response.data ) );
@@ -51,8 +53,14 @@ export class LoginComponent implements OnInit {
           }
 
 
+        } else {
+          this.isLogged = false;
+          this.errorMsg = 'incorrect username or password';
         }
 
+      }, (err) => {
+        this.isLogged = false;
+        this.errorMsg = 'incorrect username or password';
       });
     }
 
